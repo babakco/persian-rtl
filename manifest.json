@@ -1,0 +1,109 @@
+{
+  "manifest_version": 3,
+  "name": "Persian-RTL",
+  "version": "1.2.0",
+  "description": "راست‌چین (RTL) خودکار + فونت وزیرمتن برای سرویس‌های AI، با امکان اعمال روی همهٔ سایت‌ها. یک کلیک روشن، یک کلیک خاموش.",
+  "minimum_chrome_version": "102",
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_title": "Persian-RTL: روشن — برای خاموش کردن کلیک کنید",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "background": {
+    "service_worker": "src/background.js"
+  },
+  "options_ui": {
+    "page": "src/options.html",
+    "open_in_tab": true
+  },
+  "permissions": [
+    "storage",
+    "scripting",
+    "activeTab"
+  ],
+  "host_permissions": [
+    "*://*.chatgpt.com/*",
+    "*://chat.openai.com/*",
+    "*://chat.com/*",
+    "*://gemini.google.com/*",
+    "*://*.claude.ai/*",
+    "*://*.copilot.microsoft.com/*",
+    "*://*.meta.ai/*",
+    "*://muse.meta.com/*",
+    "*://*.muse.ai/*",
+    "*://*.deepseek.com/*",
+    "*://*.grok.com/*",
+    "*://*.perplexity.ai/*",
+    "*://chat.mistral.ai/*",
+    "*://chat.qwen.ai/*",
+    "*://*.poe.com/*",
+    "*://*.you.com/*",
+    "*://*.character.ai/*",
+    "*://*.pi.ai/*"
+  ],
+  "optional_host_permissions": [
+    "*://*/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.chatgpt.com/*",
+        "*://chat.openai.com/*",
+        "*://chat.com/*",
+        "*://gemini.google.com/*",
+        "*://*.claude.ai/*",
+        "*://*.copilot.microsoft.com/*",
+        "*://*.meta.ai/*",
+        "*://muse.meta.com/*",
+        "*://*.muse.ai/*",
+        "*://*.deepseek.com/*",
+        "*://*.grok.com/*",
+        "*://*.perplexity.ai/*",
+        "*://chat.mistral.ai/*",
+        "*://chat.qwen.ai/*",
+        "*://*.poe.com/*",
+        "*://*.you.com/*",
+        "*://*.character.ai/*",
+        "*://*.pi.ai/*"
+      ],
+      "css": [
+        "src/content.css"
+      ],
+      "js": [
+        "src/sites.js",
+        "src/content.js"
+      ],
+      "run_at": "document_start",
+      "all_frames": false
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "assets/vazirmatn/*.woff2"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ],
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Alt+Shift+R",
+        "mac": "Alt+Shift+R"
+      },
+      "description": "روشن/خاموش کردن راست‌چین و وزیرمتن"
+    }
+  }
+}

@@ -1,0 +1,79 @@
+/* ============================================================
+   Vazirmatn RTL — sheet injected as a user stylesheet
+   (content_scripts.css bypasses the page's CSP)
+   ============================================================ */
+
+@font-face {
+  font-family: "Vazirmatn RTL";
+  src: local("Vazirmatn"), local("Vazirmatn Regular"),
+       url("../assets/vazirmatn/Vazirmatn-Variable.woff2") format("woff2"),
+       url("https://cdn.jsdelivr.net/npm/vazirmatn@33.0.3/fonts/webfonts/Vazirmatn%5Bwght%5D.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ---------- 1) Vazirmatn everywhere in the chat UI ----------
+   Code blocks, formulas, svg and icon-font glyphs are excluded so
+   that neither code nor toolbar icons get mangled.               */
+html.vz-on body,
+html.vz-on body *:not(svg):not(svg *):not(math):not(math *):not(pre):not(pre *):not(code):not(code *):not(kbd):not(kbd *):not(samp):not(samp *):not(script):not(style):not(.katex):not(.katex *):not([class*="icon" i]):not([class*="symbol" i]):not([class*="material" i]):not([class*="lucide" i]):not([class*="codicon" i]):not([class^="fa-"]):not([class*=" fa-"]):not([data-icon]) {
+  font-family: "Vazirmatn RTL", Vazirmatn, Vazir, "Segoe UI", Tahoma,
+    system-ui, -apple-system, "Noto Naskh Arabic", sans-serif !important;
+  letter-spacing: normal !important;
+}
+
+/* ---------- 2) toggle feedback toast ---------- */
+#vz-toast {
+  position: fixed;
+  z-index: 2147483647;
+  right: 18px;
+  bottom: 18px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: #14161a;
+  color: #ffffff;
+  font-family: "Vazirmatn RTL", Vazirmatn, Vazir, Tahoma, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: normal;
+  direction: rtl;
+  unicode-bidi: isolate;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  pointer-events: none;
+  opacity: 0;
+  animation: vz-toast-in 0.16s ease forwards;
+}
+
+#vz-toast::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.2);
+}
+
+#vz-toast[data-vz-state="off"]::before {
+  background: #9ca3af;
+  box-shadow: 0 0 0 3px rgba(156, 163, 175, 0.18);
+}
+
+#vz-toast.vz-toast-hide {
+  animation: vz-toast-out 0.2s ease forwards;
+}
+
+@keyframes vz-toast-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes vz-toast-out {
+  from { opacity: 1; transform: translateY(0); }
+  to   { opacity: 0; transform: translateY(8px); }
+}

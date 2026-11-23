@@ -1,0 +1,23 @@
+# نادیده‌گرفته‌ها
+
+# وابستگی‌ها
+node_modules/
+package-lock.json.bak
+
+# خروجی‌های ساخت و بسته‌بندی
+*.zip
+*.crx
+*.pem
+dist/
+
+# سیستم و ابزارها
+.DS_Store
+Thumbs.db
+*.log
+.zwork/
+.vscode/
+.idea/
+
+# محلی / شخصی
+.env
+.env.*

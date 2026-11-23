@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>تنظیمات — Persian-RTL</title>
+  <link rel="stylesheet" href="options.css" />
+</head>
+<body>
+  <main class="page">
+    <header class="hero">
+      <div class="hero-text">
+        <h1>Persian-RTL</h1>
+        <p class="muted">
+          فونت وزیرمتن و چیدمان راست‌به‌چپ برای هر پاراگرافی که دست‌کم یک حرف فارسی دارد.
+        </p>
+      </div>
+
+      <label class="switch" for="enabled">
+        <input id="enabled" type="checkbox" />
+        <span class="switch-track" aria-hidden="true"><span class="switch-thumb"></span></span>
+        <span class="switch-text" id="enabledText">روشن</span>
+      </label>
+    </header>
+
+    <section class="card">
+      <div class="card-head">
+        <h2>سایت‌های فعال</h2>
+        <span class="count" id="count"></span>
+      </div>
+      <input id="search" class="search" type="search" placeholder="جست‌وجو در سایت‌ها…" spellcheck="false" autocomplete="off" />
+      <form id="addForm" class="row" autocomplete="off">
+        <input id="hostInput" type="text" placeholder="افزودن دامنهٔ دلخواه، مثلاً chat.example.com" spellcheck="false" autocomplete="off" />
+        <button type="submit" class="primary">افزودن</button>
+      </form>
+      <ul class="list" id="siteList"></ul>
+      <p class="hint">
+        هر سایتی را که نمی‌خواهید، از همین فهرست حذف کنید؛ هر وقت خواستید از بخش «حذف‌شده‌ها» برمی‌گردد.
+        برای ابزارهای محلی هم کار می‌کند: <code>localhost</code>.
+      </p>
+    </section>
+
+    <section class="card" id="removedCard" hidden>
+      <div class="card-head">
+        <h2>حذف‌شده از لیست پیش‌فرض</h2>
+        <button type="button" class="link" id="restoreAll">بازگردانی همه</button>
+      </div>
+      <ul class="chips" id="removedList"></ul>
+    </section>
+
+    <section class="card">
+      <div class="card-head">
+        <div>
+          <h2>پوشش خودکار سایت‌های AI</h2>
+          <p class="hint tight">
+            سایت‌هایی که در فهرست بالا نیستند ولی دامنه‌شان شبیه سرویس‌های هوش مصنوعی است
+            (مثل <code>*.ai</code> یا <code>chatgpt-*.com</code>) خودکار پوشش داده می‌شوند.
+          </p>
+        </div>
+        <label class="switch mini" for="autoDetect">
+          <input id="autoDetect" type="checkbox" />
+          <span class="switch-track" aria-hidden="true"><span class="switch-thumb"></span></span>
+        </label>
+      </div>
+      <p class="hint">
+        برای این حالت مرورگر اجازهٔ دسترسی به «همهٔ سایت‌ها» را می‌پرسد؛ افزونه فقط در صفحه‌هایی فعال
+        می‌شود که دامنه‌شان امتیاز AI بگیرد، اما این اجازه در سطح مرورگر گسترده است.
+      </p>
+    </section>
+
+    <section class="card">
+      <div class="card-head">
+        <div>
+          <h2>اعمال روی همهٔ سایت‌ها</h2>
+          <p class="hint tight">
+            افزونه روی <strong>هر</strong> صفحه‌ای که باز کنید فعال می‌شود — نه فقط سایت‌های AI.
+          </p>
+        </div>
+        <label class="switch mini" for="allSites">
+          <input id="allSites" type="checkbox" />
+          <span class="switch-track" aria-hidden="true"><span class="switch-thumb"></span></span>
+        </label>
+      </div>
+      <p class="hint">
+        هشدار: در این حالت فونت و چیدمان همهٔ سایت‌ها (ایمیل، بانک، شبکه‌های اجتماعی) عوض می‌شود؛
+        برای همین پیش‌فرض خاموش است. سایت‌هایی را که در فهرست بالا حذف کرده‌اید، همان‌جا مستثنا می‌مانند.
+        این حالت هم مثل «پوشش خودکار» به اجازهٔ دسترسی همهٔ سایت‌ها نیاز دارد.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>میان‌بر صفحه‌کلید</h2>
+      <p class="hint tight">
+        پیش‌فرض: <span class="keys"><kbd>Alt</kbd><span>+</span><kbd>Shift</kbd><span>+</span><kbd>R</kbd></span> —
+        همان کار کلیک روی آیکون را انجام می‌دهد.
+      </p>
+      <button type="button" class="ghost" id="shortcutsBtn">تغییر میان‌بر</button>
+    </section>
+
+    <p class="status" id="status" role="status" aria-live="polite"></p>
+
+    <footer class="footer">
+      <span>Persian-RTL نسخهٔ <span id="version">—</span></span>
+      <span class="dot" aria-hidden="true">•</span>
+      <span>AD-Tech — Abadis Dynamic Technology</span>
+      <span class="dot" aria-hidden="true">•</span>
+      <span>بدون ارسال داده؛ همه‌چیز داخل همین مرورگر اجرا می‌شود.</span>
+    </footer>
+  </main>
+
+  <script src="sites.js"></script>
+  <script src="options.js"></script>
+</body>
+</html>
